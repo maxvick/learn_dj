@@ -2,14 +2,22 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 # Create your views here.
-from .forms import SBForm
+from .forms import SBForm, ModCForm
 from .models import RunHistory, RunValues
 
 def get_rh(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
-		# create a form instance and populate it with data from the request:
-        form = SBForm(request.POST)
+	# create a form instance and populate it with data from the request:
+        #qs = RunHistory.objects.all()
+        #ch_list = []
+		
+        #for i in range(len(qs)):
+        #    ch_list.append((qs[i].run_name, qs[i].id))
+
+        form = ModCForm(request.POST)
+
+
         # check whether it's valid:
         if form.is_valid():
             # process the data in form.cleaned_data as required
@@ -21,13 +29,14 @@ def get_rh(request):
 
     # if a GET (or any other method) we'll create a blank form
     else:
-        form = SBForm()
         qs = RunHistory.objects.all()
         ch_list = []
 		
         for i in range(len(qs)):
             ch_list.append((qs[i].run_name, qs[i].id))
 			
-        form.fields['run_hist'].choices = ch_list
+        #form.fields['run_hist'].choices = ch_list
+        #form = SBForm(ch_list)
+        form = ModCForm()
 
         return render(request, 'selbox/templates/sb.html', {'form': form})
