@@ -1,0 +1,24 @@
+{% load static %}
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'selbox/view_test.css' %}">
+  </head>
+<body>
+<h1>Run History</h1>
+<table>
+<tr>
+	<th>Run Name</th>
+	<th>Run Name</th>
+</tr>
+{% for runhistory in object_list %}
+    <tr>
+    <td>{{ runhistory }}</td>
+    <td>{{ runhistory.run_time }}</td>
+    </tr>
+
+{% endfor %}
+</table>
+</body>
+</html>

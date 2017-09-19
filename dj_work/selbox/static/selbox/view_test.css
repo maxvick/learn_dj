@@ -1,0 +1,18 @@
+table {
+   border-collapse: collapse;
+   margin-left: 100px;
+}
+
+th, td {
+   background-color: #FFFFFF;
+   border: 1px solid black;
+}
+
+td:hover {
+   background-color: #4CAF50;
+}
+
+h1 {
+   background-color: #4CAF50;
+   padding-left: 100px;
+}

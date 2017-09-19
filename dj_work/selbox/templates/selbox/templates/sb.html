@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block javascript %}
+  <script>
+    $("#id_run_hist").change(function () {
+      console.log( $(this).val() );
+    });
+  </script>
+{% endblock %}
+
+{% block content %}
+
+<form action="/selbox/" method="post">
+    {% csrf_token %}
+    <script>
+    console.log('just testing');
+    </script>
+    {{ form.as_p }}
+    <input type="submit" value="Submit" />
+</form>
+
+{% endblock %}
+
