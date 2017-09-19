@@ -4,6 +4,22 @@
   <script>
     $("#id_run_hist").change(function () {
       console.log( $(this).val() );
+
+      var rh_key = $(this).val();
+      
+      $.ajax({
+        url: '/ajax/update_rv',        
+	data: {
+          'run_hist': rh_key
+        },
+        dataType: 'json',
+        success: function (data) {
+          if (data.is_taken) {
+            alert("A user with this username already exists.");
+          }
+        }
+      });
+
     });
   </script>
 {% endblock %}

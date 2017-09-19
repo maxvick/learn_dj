@@ -37,11 +37,16 @@ def get_rh(request):
         for i in range(len(qs)):
             ch_list.append((qs[i].run_name, qs[i].id))
 			
-        #form.fields['run_hist'].choices = ch_list
-        #form = SBForm(ch_list)
         form = ModCForm()
 
         return render(request, 'selbox/templates/sb.html', {'form': form})
+
+def update_rv(request):
+    rh_key = request.GET.get('run_hist', None)
+    data = {
+        'rv_dat': RunValues.objects.filter(run_history__iexact=rh_key)
+    }
+    return JsonResponse(data)
 
 class RunHistoryListView(ListView):
     model = RunHistory
